@@ -1,15 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.1;netcoreapp5</TargetFrameworks>
-	<Version>1.0.4</Version>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;netcoreapp5</TargetFrameworks>
+	<Version>1.0.5</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Tom Cheney</Authors>
     <Company>TTC Marine</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/tomcheney/nlog-influx-target</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>nlog;influxdb;logging</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="InfluxDB.Client" Version="4.4.0" />
