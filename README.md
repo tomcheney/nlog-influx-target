@@ -4,8 +4,8 @@ NLog logging target for InfluxDB v2.
 ![Nuget](https://img.shields.io/nuget/dt/NLog.Targets.InfluxDB)
 [![GitHub issues](https://img.shields.io/github/issues/tomcheney/nlog-influx-target)](https://github.com/tomcheney/nlog-influx-target/issues)
 ![Nuget](https://img.shields.io/nuget/v/NLog.Targets.InfluxDB)
-[![GitHub forks](https://img.shields.io/github/forks/tomcheney/nlog-influx-target)](https://github.com/hayrullahcansu/nlog-kafka-target/network)
-[![GitHub stars](https://img.shields.io/github/stars/tomcheney/nlog-influx-target)](https://github.com/hayrullahcansu/nlog-kafka-target/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/tomcheney/nlog-influx-target)](https://github.com/tomcheney/nlog-influx-target/network)
+[![GitHub stars](https://img.shields.io/github/stars/tomcheney/nlog-influx-target)](https://github.com/tomcheney/nlog-influx-target/stargazers)
 
 
 ## Supported frameworks 
