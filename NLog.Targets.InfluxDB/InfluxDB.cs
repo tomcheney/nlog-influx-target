@@ -5,6 +5,7 @@ using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Writes;
 using System;
 using System.Net;
+using NLog.Layouts;
 
 namespace NLog.Targets.InfluxDB
 {
@@ -14,23 +15,23 @@ namespace NLog.Targets.InfluxDB
         public InfluxDB()
         {
             //set defaults
-            this.Host = "";
-            this.Bucket = "";
-            this.Org = "";
-            this.Token = "";
+            Host = "";
+            Bucket = "";
+            Org = "";
+            Token = "";
         }
 
         [RequiredParameter]
-        public string Host { get; set; }
+        public Layout Host { get; set; }
 
         [RequiredParameter]
-        public string Bucket { get; set; }
+        public Layout Bucket { get; set; }
 
         [RequiredParameter]
-        public string Token { get; set; }
+        public Layout Token { get; set; }
 
         [RequiredParameter]
-        public string Org { get; set; }
+        public Layout Org { get; set; }
 
         InfluxDBClient m_influxClient;
         WriteApi m_writeApi;
@@ -50,7 +51,9 @@ namespace NLog.Targets.InfluxDB
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            m_influxClient = InfluxDBClientFactory.Create(Host, Token);
+            var host = RenderLogEvent(Host, LogEventInfo.CreateNullEvent());
+            var token = RenderLogEvent(Token, LogEventInfo.CreateNullEvent());
+            m_influxClient = InfluxDBClientFactory.Create(host, token);
             m_writeApi = m_influxClient.GetWriteApi();
 
             var name = System.Reflection.Assembly.GetEntryAssembly().GetName();
@@ -63,13 +66,17 @@ namespace NLog.Targets.InfluxDB
             var point = PointData.Measurement("NLog")
                 .Tag("LoggerName", logEvent.LoggerName)
                 .Tag("Level", logEvent.Level.ToString())
-                .Tag("Name", m_application)
+                .Tag("Application", m_application)
                 .Tag("Version", m_version)
                 .Tag("GUID", m_guid)
                 .Tag("Host", m_hostName)
                 .Field("Message", logEvent.Message)
+                .Field("level", logEvent.Level.ToString().ToLower())
                 .Timestamp(logEvent.TimeStamp.ToUniversalTime(), WritePrecision.Ns);
-            m_writeApi.WritePoint(point, Bucket, Org);
+            
+            var bucket = RenderLogEvent(Bucket, logEvent);
+            var organization = RenderLogEvent(Org, logEvent);
+            m_writeApi.WritePoint(point, bucket, organization);
         }
     }
 }

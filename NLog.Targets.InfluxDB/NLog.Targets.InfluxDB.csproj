@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;netcoreapp5</TargetFrameworks>
-	<Version>1.0.5</Version>
+	<Version>1.0.7</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Tom Cheney</Authors>
-    <Company>TTC Marine</Company>
+    <Company>SailGP</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/tomcheney/nlog-influx-target</RepositoryUrl>
