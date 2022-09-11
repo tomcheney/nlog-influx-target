@@ -112,6 +112,7 @@ namespace NLog.Targets.InfluxDB
 
             var bucket = RenderLogEvent(Bucket, logEvent);
             var organization = RenderLogEvent(Org, logEvent);
+            point = point.Timestamp(DateTime.UtcNow, WritePrecision.Ns);
             m_writeApi.WritePoint(point, bucket, organization);
         }
     }
